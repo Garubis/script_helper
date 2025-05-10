@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b25b4s2x2pxh0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gsqoc"]
+bg_color = Color(0, 0, 0, 1)
+
+[resource]
+TooltipLabel/styles/normal = SubResource("StyleBoxFlat_gsqoc")
