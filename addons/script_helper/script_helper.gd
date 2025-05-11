@@ -38,7 +38,7 @@ func _make_visible(visible):
 
 
 func _get_plugin_name():
-	return "quikfix"
+	return "ScriptHelper"
 
 
 func _get_plugin_icon():
