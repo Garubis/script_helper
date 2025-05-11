@@ -1,0 +1,262 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1drnmw4wx8ex"]
+
+[ext_resource type="Theme" uid="uid://b25b4s2x2pxh0" path="res://addons/script_helper/main_theme.tres" id="1_uwf4h"]
+[ext_resource type="Script" uid="uid://bb644d1yurkah" path="res://addons/script_helper/main.gd" id="2_p0rnj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_uwf4h")
+script = ExtResource("2_p0rnj")
+
+[node name="SelectFileButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 49.0
+offset_right = 93.0
+offset_bottom = 80.0
+tooltip_text = "Select a file that you want to load and check for basic fixes."
+text = "Select File"
+
+[node name="CheckButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 386.0
+offset_top = 283.0
+offset_right = 450.0
+offset_bottom = 314.0
+tooltip_text = "Loads the selected file and checks for fixes that have been optionally selected/checked."
+text = "CHECK!"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Open a File"
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+
+[node name="OutputText" type="TextEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 614.0
+offset_top = 36.0
+offset_right = 1150.0
+offset_bottom = 610.0
+
+[node name="SaveButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 876.0
+offset_top = 615.0
+offset_right = 957.0
+offset_bottom = 646.0
+tooltip_text = "Creates a backup and opens the save menu."
+text = "SAVE"
+
+[node name="BackupNotification" type="Button" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 982.0
+offset_top = 617.0
+offset_right = 1132.0
+offset_bottom = 648.0
+text = "BACKUP CREATED!"
+
+[node name="TypePanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 202.0
+offset_top = 354.0
+offset_right = 612.0
+offset_bottom = 646.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TypePanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TypePanel/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Select the type to quickly add to the line below that was found in the selected file.
+Each line is shown one at a time until the user selects a type."
+mouse_filter = 1
+text = "\\/ Add type for line: \\/"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TypePanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="CurrentLine" type="Label" parent="TypePanel/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Select a type for this line."
+mouse_filter = 1
+text = "func test_line_longline(): variable = test_line_variable"
+
+[node name="ScrollBox" type="ScrollContainer" parent="TypePanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "A list of types that the user can quickly add to lines when a file has been checked for missing static types."
+
+[node name="TypeContainer" type="GridContainer" parent="TypePanel/VBoxContainer/ScrollBox"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="BackupCheckBox" type="CheckBox" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 627.0
+offset_top = 615.0
+offset_right = 866.0
+offset_bottom = 646.0
+tooltip_text = "Creates a backup of the original selected file when the save button is pressed and overwrites it."
+button_pressed = true
+text = "Create Backup on Save"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 64.0
+offset_right = 383.0
+offset_bottom = 351.0
+
+[node name="Control" type="Control" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -142.5
+offset_right = 142.5
+offset_bottom = 23.0
+grow_horizontal = 2
+tooltip_text = "Select these to have the CHECK! button search the file for those specific fixes."
+mouse_filter = 1
+text = "Options"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/Control"]
+layout_mode = 0
+offset_top = 28.0
+offset_right = 285.0
+offset_bottom = 287.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control/ScrollContainer"]
+layout_mode = 2
+
+[node name="CheckVoid" type="CheckBox" parent="PanelContainer/Control/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Missing -> void:"
+
+[node name="CheckStaticType" type="CheckBox" parent="PanelContainer/Control/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Missing types:"
+
+[node name="CheckBox3" type="CheckBox" parent="PanelContainer/Control/ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "?:"
+
+[node name="CheckBox4" type="CheckBox" parent="PanelContainer/Control/ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "?:"
+
+[node name="CheckBox5" type="CheckBox" parent="PanelContainer/Control/ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "?:"
+
+[node name="CheckBox6" type="CheckBox" parent="PanelContainer/Control/ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "?:"
+
+[node name="CheckBox7" type="CheckBox" parent="PanelContainer/Control/ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "?:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+
+[node name="CheckShowFullFile" type="CheckBox" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Show Full Path:"
+
+[node name="SelectedFileLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ConfirmationPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -205.0
+offset_top = -146.0
+offset_right = 205.0
+offset_bottom = 146.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0xm2m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ConfirmationPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ConfirmationPanel/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Select the type to quickly add to the line below that was found in the selected file.
+Each line is shown one at a time until the user selects a type."
+mouse_filter = 1
+text = ">>--OVERWRITE FILE?--<<"
+horizontal_alignment = 1
+
+[node name="UserSaveConfirmationButton" type="Button" parent="ConfirmationPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Overwrites the original selected file."
+text = "YES"
+
+[node name="CancelButton" type="Button" parent="ConfirmationPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Do nothing and close this menu."
+text = "Cancel"
+
+[node name="RenameButton" type="Button" parent="ConfirmationPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 10
+tooltip_text = "Saves a new file with the name below in the same directory as the loaded file."
+text = "Rename"
+
+[node name="RenameLineEdit" type="LineEdit" parent="ConfirmationPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Type a new file name.."
